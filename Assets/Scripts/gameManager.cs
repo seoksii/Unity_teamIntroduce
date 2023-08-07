@@ -87,6 +87,7 @@ public class gameManager : MonoBehaviour
         }
         else
         {
+            time -= 3;
             firstCard.GetComponent<card>().closeCard();
             secondCard.GetComponent<card>().closeCard();
         }
