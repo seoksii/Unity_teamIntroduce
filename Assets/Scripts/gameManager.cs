@@ -15,7 +15,10 @@ public class gameManager : MonoBehaviour
 
     public Text timeTxt;
     public GameObject endTxt;
-    float time = 0.0f;
+    float time = 60.0f;
+
+    public Text trytimeTxt;
+    int trytime = 0;
 
     private void Awake()
     {
@@ -50,10 +53,10 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        time += Time.deltaTime;
+        time -= Time.deltaTime;
         timeTxt.text = time.ToString("N2");
 
-        if (time > 30.0f)
+        if (time < 0.0f)
         {
             endTxt.SetActive(true);
             Time.timeScale = 0.0f;
@@ -85,6 +88,9 @@ public class gameManager : MonoBehaviour
 
         firstCard = null;
         secondCard = null;
+
+        trytime += 1;
+        trytimeTxt.text = trytime.ToString("N0");
     }
 
     public void retryGame()
