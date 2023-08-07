@@ -24,6 +24,7 @@ public class card : MonoBehaviour
     {
         anim.SetBool("isOpen", true);
         transform.Find("front").gameObject.SetActive(true);
+        transform.Find("back").gameObject.GetComponent<Renderer>().material.color = Color.gray;
         transform.Find("back").gameObject.SetActive(false);
 
         if (gameManager.I.firstCard == null)
