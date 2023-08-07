@@ -14,7 +14,7 @@ public class gameManager : MonoBehaviour
     public GameObject secondCard;
 
     public Text timeTxt;
-    public GameObject endTxt;
+    public GameObject resultPanel;
     float time = 60.0f;
 
     public Text trytimeTxt;
@@ -63,7 +63,7 @@ public class gameManager : MonoBehaviour
 
         if (time < 0.0f)
         {
-            endTxt.SetActive(true);
+            resultPanel.SetActive(true);
             Time.timeScale = 0.0f;
         }
     }
@@ -81,7 +81,7 @@ public class gameManager : MonoBehaviour
             int cardsLeft = GameObject.Find("Cards").transform.childCount;
             if (cardsLeft == 2)
             {
-                endTxt.SetActive(true);
+                resultPanel.SetActive(true);
                 Time.timeScale = 0.0f;
             }
         }
@@ -102,5 +102,10 @@ public class gameManager : MonoBehaviour
     public void retryGame()
     {
         SceneManager.LoadScene("MainScene");
+    }
+
+    public void moveMainMenu()
+    {
+        SceneManager.LoadScene("StartScene");
     }
 }
