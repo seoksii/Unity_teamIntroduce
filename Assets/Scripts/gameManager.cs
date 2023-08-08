@@ -33,6 +33,8 @@ public class gameManager : MonoBehaviour
     public Text recentlyScoreTxt;
     public Text bestScoreTxt;
 
+    public GameObject pngegg;
+
     private void Awake()
     {
         I = this;
@@ -114,6 +116,7 @@ public class gameManager : MonoBehaviour
 
         if (firstCardImage == secondCardImage)
         {
+            Instantiate(pngegg, this.transform.position, Quaternion.identity);
             score += 10;
             audioSource.PlayOneShot(success, 0.5f);
             firstCard.GetComponent<card>().destroyCard();
@@ -141,6 +144,8 @@ public class gameManager : MonoBehaviour
                 resultPanel.SetActive(true);
                 Time.timeScale = 0.0f;
             }
+
+            Destroy(pngegg);
         }
         else
         {
