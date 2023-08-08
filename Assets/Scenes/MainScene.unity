@@ -727,6 +727,9 @@ MonoBehaviour:
   timeTxt: {fileID: 2098948848}
   resultPanel: {fileID: 1963794393}
   trytimeTxt: {fileID: 1386355435}
+  success: {fileID: 8300000, guid: a950a1dfdb406ec4f9d5274526a5e0f6, type: 3}
+  fail: {fileID: 8300000, guid: 6dfacc802638f0245b1ef6cfeeab3fa3, type: 3}
+  audioSource: {fileID: 1138497624}
   isClickable: 1
 --- !u!4 &1138497623
 Transform:
