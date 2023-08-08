@@ -164,8 +164,8 @@ public class gameManager : MonoBehaviour
         panelExplanation.text = firstCard.GetComponent<card>().cardExplanation[cardNum];
 
         panelAnimator.SetBool("isSuccess", true);
-        Invoke("disablePanel", 2.0f);
-        Invoke("resumeGame", 3.5f);
+        Invoke("disablePanel", 5.0f);
+        Invoke("resumeGame", 6.5f);
     }
 
     public void disablePanel()
