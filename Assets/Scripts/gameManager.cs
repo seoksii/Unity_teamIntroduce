@@ -123,6 +123,7 @@ public class gameManager : MonoBehaviour
         trytime = 0;
         trytimeTxt.text = trytime.ToString("N0");
         time = 60f;
+        AudioManager.instance.resetAudio();
         SceneManager.LoadScene("MainScene");
     }
 
@@ -133,6 +134,7 @@ public class gameManager : MonoBehaviour
         trytime = 0;
         trytimeTxt.text = trytime.ToString("N0");
         time = 60f;
+        AudioManager.instance.resetAudio();
         SceneManager.LoadScene("StartScene");
     }
 }

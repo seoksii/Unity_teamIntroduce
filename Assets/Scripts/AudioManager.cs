@@ -50,4 +50,10 @@ public class AudioManager : MonoBehaviour
             }
         }
     }
+
+    public void resetAudio()
+    {
+        audioSource.clip = bgmusic;
+        audioSource.Play();
+    }
 }
