@@ -7,6 +7,8 @@ public class startManager : MonoBehaviour
 {
     private startManager I;
 
+    public GameObject normalClear;
+
     private void Awake()
     {
         I = this;
@@ -22,5 +24,22 @@ public class startManager : MonoBehaviour
     {
         SceneManager.LoadScene("MainScene");
     }
-    
+
+    public void startHardGame()
+    {
+        if (PlayerPrefs.GetInt("isNormalClear") == 1)
+        {
+            SceneManager.LoadScene("HardScene");
+        }
+        else
+        {
+            normalClear.SetActive(true);
+            Invoke("saf", 3f);
+        }
+    }
+
+    void saf()
+    {
+        normalClear.SetActive(false);
+    }
 }

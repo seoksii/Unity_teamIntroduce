@@ -49,6 +49,8 @@ public class gameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PlayerPrefs.SetInt("isNormalClear", 0);
+
         initGame();
 
         int[] members = { 0, 0, 1, 1, 4, 4, 5, 5, 8, 8, 9, 9 };
@@ -134,7 +136,8 @@ public class gameManager : MonoBehaviour
             int cardsLeft = GameObject.Find("Cards").transform.childCount;
             if (cardsLeft == 2)
             {
-                Invoke("successGame", 6.0f);
+                PlayerPrefs.SetInt("isNormalClear", 1);
+                Invoke("successGame", 7.0f);
             }
         }
         else
