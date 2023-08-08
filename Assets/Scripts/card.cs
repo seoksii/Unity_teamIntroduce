@@ -26,9 +26,7 @@ public class card : MonoBehaviour
         if (gameManager.I.isClickable == false) return;
 
         anim.SetBool("isOpen", true);
-        transform.Find("front").gameObject.SetActive(true);
         transform.Find("back").gameObject.GetComponent<Renderer>().material.color = Color.gray;
-        transform.Find("back").gameObject.SetActive(false);
 
         if (gameManager.I.firstCard == null)
         {
@@ -72,7 +70,5 @@ public class card : MonoBehaviour
     void closeCardInvoke()
     {
         anim.SetBool("isOpen", false);
-        transform.Find("back").gameObject.SetActive(true);
-        transform.Find("front").gameObject.SetActive(false);
     }
 }
