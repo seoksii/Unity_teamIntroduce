@@ -20,6 +20,8 @@ public class gameManager : MonoBehaviour
     public Text trytimeTxt;
     int trytime = 0;
 
+    public bool isClickable = true;
+
     private void Awake()
     {
         I = this;

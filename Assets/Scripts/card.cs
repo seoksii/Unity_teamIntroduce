@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading;
 using UnityEngine;
 
@@ -22,6 +23,8 @@ public class card : MonoBehaviour
 
     public void openCard()
     {
+        if (gameManager.I.isClickable == false) return;
+
         anim.SetBool("isOpen", true);
         transform.Find("front").gameObject.SetActive(true);
         transform.Find("back").gameObject.GetComponent<Renderer>().material.color = Color.gray;
@@ -33,9 +36,20 @@ public class card : MonoBehaviour
         }
         else
         {
+            disableClick();
             gameManager.I.secondCard = gameObject;
             gameManager.I.isMatched();
         }
+    }
+
+    public void enableClick()
+    {
+        gameManager.I.isClickable = true;
+    }
+
+    public void disableClick()
+    {
+        gameManager.I.isClickable = false;
     }
 
     public void destroyCard()
@@ -46,11 +60,13 @@ public class card : MonoBehaviour
     void destroyCardInvoke()
     {
         Destroy(gameObject);
+        enableClick();
     }
 
     public void closeCard()
     {
         Invoke("closeCardInvoke", 1.0f);
+        Invoke("enableClick", 1.5f);
     }
 
     void closeCardInvoke()
