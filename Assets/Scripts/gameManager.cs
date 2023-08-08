@@ -31,7 +31,7 @@ public class gameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Time.timeScale = 1.0f;
+        initGame();
 
         int[] rtans = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5 };
         //int[] rtans = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7 };
@@ -68,6 +68,14 @@ public class gameManager : MonoBehaviour
             resultPanel.SetActive(true);
             Time.timeScale = 0.0f;
         }
+    }
+
+    void initGame()
+    {
+        resultPanel.SetActive(false);
+        Time.timeScale = 1.0f;
+        trytime = 0;
+        trytimeTxt.text = trytime.ToString("N0");
     }
 
     public void isMatched()
