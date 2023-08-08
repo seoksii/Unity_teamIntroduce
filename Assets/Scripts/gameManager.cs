@@ -36,9 +36,11 @@ public class gameManager : MonoBehaviour
     public Text panelExplanation;
 
     public static float score = 0;
-    public static float totalScore = score + time - trytime;
+    public static float totalScore = 0;
     public Text recentlyScoreTxt;
     public Text bestScoreTxt;
+
+    public GameObject pngegg;
 
     private void Awake()
     {
@@ -86,7 +88,7 @@ public class gameManager : MonoBehaviour
 
         if (time < 0.0f)
         {
-            recentlyScoreTxt.text = totalScore.ToString("N2");
+            totalScore = 200 + score + time - trytime;
 
             if (PlayerPrefs.HasKey("bestScore") == false)
             {
@@ -100,6 +102,8 @@ public class gameManager : MonoBehaviour
                 }
             }
             bestScoreTxt.text = PlayerPrefs.GetFloat("bestScore").ToString("N2");
+
+            recentlyScoreTxt.text = totalScore.ToString("N2");
 
             resultPanel.SetActive(true);
             Time.timeScale = 0.0f;
@@ -122,6 +126,7 @@ public class gameManager : MonoBehaviour
 
         if (firstCardNum == secondCardNum)
         {
+            Instantiate(pngegg, this.transform.position, Quaternion.identity);
             score += 10;
             audioSource.PlayOneShot(success, 0.5f);
 
@@ -134,6 +139,8 @@ public class gameManager : MonoBehaviour
             {
                 Invoke("successGame", 3.0f);
             }
+
+            Destroy(pngegg);
         }
         else
         {
