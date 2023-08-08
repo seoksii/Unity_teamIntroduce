@@ -20,6 +20,10 @@ public class gameManager : MonoBehaviour
     public Text trytimeTxt;
     int trytime = 0;
 
+    public AudioClip success;
+    public AudioClip fail;
+    public AudioSource audioSource;
+
     public bool isClickable = true;
 
     private void Awake()
@@ -77,6 +81,7 @@ public class gameManager : MonoBehaviour
 
         if (firstCardImage == secondCardImage)
         {
+            audioSource.PlayOneShot(success);
             firstCard.GetComponent<card>().destroyCard();
             secondCard.GetComponent<card>().destroyCard();
 
@@ -89,6 +94,7 @@ public class gameManager : MonoBehaviour
         }
         else
         {
+            audioSource.PlayOneShot(fail);
             time -= 3;
             firstCard.GetComponent<card>().closeCard();
             secondCard.GetComponent<card>().closeCard();
