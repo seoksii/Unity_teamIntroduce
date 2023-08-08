@@ -70,9 +70,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1b10fad1b4ecf7468b6f192f540137f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
-  flip: {fileID: 0}
-  audioSource: {fileID: 0}
+  anim: {fileID: 1716951869253049373}
+  flip: {fileID: 8300000, guid: 151e0b595d5114347a713b52e8b7f55a, type: 3}
+  audioSource: {fileID: 1523625534317034606}
   cardNum: 0
   cardMemberName:
   - "<\uC2E0\uC6B0\uC11D>"
