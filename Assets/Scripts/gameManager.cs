@@ -40,8 +40,6 @@ public class gameManager : MonoBehaviour
     public Text recentlyScoreTxt;
     public Text bestScoreTxt;
 
-    public GameObject pngegg;
-
     private void Awake()
     {
         I = this;
@@ -126,7 +124,6 @@ public class gameManager : MonoBehaviour
 
         if (firstCardNum == secondCardNum)
         {
-            Instantiate(pngegg, this.transform.position, Quaternion.identity);
             score += 10;
             audioSource.PlayOneShot(success, 0.5f);
 
@@ -139,8 +136,6 @@ public class gameManager : MonoBehaviour
             {
                 Invoke("successGame", 3.0f);
             }
-
-            Destroy(pngegg);
         }
         else
         {
