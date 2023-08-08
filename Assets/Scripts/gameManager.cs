@@ -65,6 +65,7 @@ public class gameManager : MonoBehaviour
         if (time < 20.0f)
         {
             GameObject.Find("timeTxt").GetComponent<Text>().color = Color.red;
+            GameObject.Find("Main Camera").GetComponent<Camera>().backgroundColor = Color.yellow;
         }
 
         if (time < 0.0f)
