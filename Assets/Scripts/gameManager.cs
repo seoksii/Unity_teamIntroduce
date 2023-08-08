@@ -63,7 +63,6 @@ public class gameManager : MonoBehaviour
             GameObject newCard = Instantiate(card);
             newCard.transform.parent = GameObject.Find("Cards").transform;
             newCard.GetComponent<card>().cardNum = members[i];
-            newCard.GetComponent<card>().initCard();
 
             float x = (i % 4) * 1.4f - 2.1f;
             float y = (i / 4) * 1.4f - 2.3f;
