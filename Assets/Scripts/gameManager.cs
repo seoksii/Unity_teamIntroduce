@@ -90,7 +90,7 @@ public class gameManager : MonoBehaviour
 
         if (firstCardImage == secondCardImage)
         {
-            audioSource.PlayOneShot(success);
+            audioSource.PlayOneShot(success, 0.5f);
             firstCard.GetComponent<card>().destroyCard();
             secondCard.GetComponent<card>().destroyCard();
 
@@ -103,7 +103,7 @@ public class gameManager : MonoBehaviour
         }
         else
         {
-            audioSource.PlayOneShot(fail);
+            audioSource.PlayOneShot(fail, 0.5f);
             time -= 3;
             firstCard.GetComponent<card>().closeCard();
             secondCard.GetComponent<card>().closeCard();

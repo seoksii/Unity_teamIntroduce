@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class card : MonoBehaviour
 {
@@ -35,10 +36,12 @@ public class card : MonoBehaviour
 
         if (gameManager.I.firstCard == null)
         {
+            gameObject.GetComponent<Button>().interactable = false;
             gameManager.I.firstCard = gameObject;
         }
         else
         {
+            gameObject.GetComponent<Button>().interactable = false;
             disableClick();
             gameManager.I.secondCard = gameObject;
             gameManager.I.isMatched();
@@ -74,6 +77,7 @@ public class card : MonoBehaviour
 
     void closeCardInvoke()
     {
+        gameObject.GetComponent<Button>().interactable = true;
         anim.SetBool("isOpen", false);
     }
 }
