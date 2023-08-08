@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class gameManager : MonoBehaviour
 {
@@ -18,13 +20,18 @@ public class gameManager : MonoBehaviour
     public static float time = 60.0f;
 
     public Text trytimeTxt;
-    int trytime = 0;
+    public static float trytime = 0;
 
     public AudioClip success;
     public AudioClip fail;
     public AudioSource audioSource;
 
     public bool isClickable = true;
+
+    public static float score = 0;
+    public static float totalScore = score + time - trytime;
+    public Text recentlyScoreTxt;
+    public Text bestScoreTxt;
 
     private void Awake()
     {
@@ -70,6 +77,21 @@ public class gameManager : MonoBehaviour
 
         if (time < 0.0f)
         {
+            recentlyScoreTxt.text = totalScore.ToString("N2");
+
+            if (PlayerPrefs.HasKey("bestScore") == false)
+            {
+                PlayerPrefs.SetFloat("bestScore", totalScore);
+            }
+            else
+            {
+                if (PlayerPrefs.GetFloat("bestScore") < totalScore)
+                {
+                    PlayerPrefs.SetFloat("bestScore", totalScore);
+                }
+            }
+            bestScoreTxt.text = PlayerPrefs.GetFloat("bestScore").ToString("N2");
+
             resultPanel.SetActive(true);
             Time.timeScale = 0.0f;
         }
@@ -90,6 +112,7 @@ public class gameManager : MonoBehaviour
 
         if (firstCardImage == secondCardImage)
         {
+            score += 10;
             audioSource.PlayOneShot(success, 0.5f);
             firstCard.GetComponent<card>().destroyCard();
             secondCard.GetComponent<card>().destroyCard();
@@ -97,12 +120,27 @@ public class gameManager : MonoBehaviour
             int cardsLeft = GameObject.Find("Cards").transform.childCount;
             if (cardsLeft == 2)
             {
+                recentlyScoreTxt.text = totalScore.ToString("N2");
+
+                if (PlayerPrefs.HasKey("bestScore") == false)
+                {
+                    PlayerPrefs.SetFloat("bestScore", totalScore);
+                }
+                else
+                {
+                    if (PlayerPrefs.GetFloat("bestScore") < totalScore)
+                    {
+                        PlayerPrefs.SetFloat("bestScore", totalScore);
+                    }
+                }
+                bestScoreTxt.text = PlayerPrefs.GetFloat("bestScore").ToString("N2");
                 resultPanel.SetActive(true);
                 Time.timeScale = 0.0f;
             }
         }
         else
         {
+            score -= 5;
             audioSource.PlayOneShot(fail, 0.5f);
             time -= 3;
             firstCard.GetComponent<card>().closeCard();
