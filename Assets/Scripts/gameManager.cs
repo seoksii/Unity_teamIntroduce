@@ -29,7 +29,7 @@ public class gameManager : MonoBehaviour
     public bool isClickable = true;
 
     public static float score = 0;
-    public static float totalScore = score + time - trytime;
+    public static float totalScore = 0;
     public Text recentlyScoreTxt;
     public Text bestScoreTxt;
 
@@ -77,7 +77,7 @@ public class gameManager : MonoBehaviour
 
         if (time < 0.0f)
         {
-            recentlyScoreTxt.text = totalScore.ToString("N2");
+            totalScore = 200 + score + time - trytime;
 
             if (PlayerPrefs.HasKey("bestScore") == false)
             {
@@ -91,6 +91,8 @@ public class gameManager : MonoBehaviour
                 }
             }
             bestScoreTxt.text = PlayerPrefs.GetFloat("bestScore").ToString("N2");
+
+            recentlyScoreTxt.text = totalScore.ToString("N2");
 
             resultPanel.SetActive(true);
             Time.timeScale = 0.0f;
@@ -120,7 +122,7 @@ public class gameManager : MonoBehaviour
             int cardsLeft = GameObject.Find("Cards").transform.childCount;
             if (cardsLeft == 2)
             {
-                recentlyScoreTxt.text = totalScore.ToString("N2");
+                totalScore = 200 + score + time - trytime;
 
                 if (PlayerPrefs.HasKey("bestScore") == false)
                 {
@@ -134,6 +136,8 @@ public class gameManager : MonoBehaviour
                     }
                 }
                 bestScoreTxt.text = PlayerPrefs.GetFloat("bestScore").ToString("N2");
+
+                recentlyScoreTxt.text = totalScore.ToString("N2");
                 resultPanel.SetActive(true);
                 Time.timeScale = 0.0f;
             }
