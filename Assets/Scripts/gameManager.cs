@@ -134,7 +134,7 @@ public class gameManager : MonoBehaviour
             int cardsLeft = GameObject.Find("Cards").transform.childCount;
             if (cardsLeft == 2)
             {
-                Invoke("successGame", 3.0f);
+                Invoke("successGame", 6.0f);
             }
         }
         else
@@ -185,6 +185,7 @@ public class gameManager : MonoBehaviour
 
     public void successGame()
     {
+        totalScore = 200 + score + time - trytime;
         recentlyScoreTxt.text = totalScore.ToString("N2");
 
         if (PlayerPrefs.HasKey("bestScore") == false)
