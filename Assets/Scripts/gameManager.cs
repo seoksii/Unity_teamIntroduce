@@ -118,11 +118,21 @@ public class gameManager : MonoBehaviour
 
     public void retryGame()
     {
+        resultPanel.SetActive(false);
+        Time.timeScale = 1.0f;
+        trytime = 0;
+        trytimeTxt.text = trytime.ToString("N0");
+        time = 60f;
         SceneManager.LoadScene("MainScene");
     }
 
     public void moveMainMenu()
     {
+        resultPanel.SetActive(false);
+        Time.timeScale = 1.0f;
+        trytime = 0;
+        trytimeTxt.text = trytime.ToString("N0");
+        time = 60f;
         SceneManager.LoadScene("StartScene");
     }
 }
