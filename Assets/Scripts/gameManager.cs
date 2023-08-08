@@ -15,7 +15,7 @@ public class gameManager : MonoBehaviour
 
     public Text timeTxt;
     public GameObject resultPanel;
-    float time = 60.0f;
+    public static float time = 60.0f;
 
     public Text trytimeTxt;
     int trytime = 0;

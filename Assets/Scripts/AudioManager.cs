@@ -5,6 +5,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public AudioClip bgmusic;
+    public AudioClip ginbak;
     public AudioSource audioSource;
 
     public static AudioManager instance;
@@ -22,16 +23,31 @@ public class AudioManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        audioSource.clip = bgmusic;
+        audioSource.Play();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (audioSource.isPlaying == false)
+        if (gameManager.time <= 20f && gameManager.time >= 3)
         {
-            audioSource.clip = bgmusic;
-            audioSource.Play();
+            if (audioSource.clip == bgmusic)
+            {
+                audioSource.Stop();
+                audioSource.clip = ginbak;
+                audioSource.Play();
+            }
+        }
+
+        if (gameManager.time <= 0f)
+        {
+            if (audioSource.clip == ginbak)
+            {
+                audioSource.Stop();
+                audioSource.clip = bgmusic;
+                audioSource.Play();
+            }
         }
     }
 }
