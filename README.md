@@ -1,9 +1,4 @@
 # Unity_teamIntroduce
-# 게임 소개 페이지 작성하기
-
-기한: 2023년 8월 10일
-사람: 신우석
-상태: In progress
 
 # 게임 플레이
 
