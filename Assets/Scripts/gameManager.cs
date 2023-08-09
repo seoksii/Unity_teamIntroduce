@@ -39,6 +39,7 @@ public class gameManager : MonoBehaviour
     public static float totalScore = 0;
     public Text recentlyScoreTxt;
     public Text bestScoreTxt;
+    public GameObject gameInfoPanel;
 
     private void Awake()
     {
@@ -49,23 +50,33 @@ public class gameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerPrefs.SetInt("isNormalClear", 0);
+        if (PlayerPrefs.HasKey("isNormalClear") == false)
+            PlayerPrefs.SetInt("isNormalClear", 0);
 
         initGame();
+        initUI();
 
-        int[] members = { 0, 0, 1, 1, 4, 4, 5, 5, 8, 8, 9, 9 };
-        //int[] rtans = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7 };
+        int numberOfCards;
+        float positionOffset = 0f;
+        if (PlayerPrefs.GetInt("difficulty") == 0) numberOfCards = 12;
+        else
+        {
+            numberOfCards = 24;
+            positionOffset = -2f;
+        }
 
-        members = members.OrderBy(item => Random.Range(-1.0f, 1.0f)).ToArray();
+        int[] members = { 0, 0, 1, 1, 4, 4, 5, 5, 8, 8, 9, 9, 2, 2, 3, 3, 6, 6, 7, 7, 10, 10, 11, 11 };
 
-        for (int i = 0; i < 12; i++)
+        members = ShuffleArray<int>(members, numberOfCards);
+
+        for (int i = 0; i < numberOfCards; i++)
         {
             GameObject newCard = Instantiate(card);
             newCard.transform.parent = GameObject.Find("Cards").transform;
             newCard.GetComponent<card>().cardNum = members[i];
 
             float x = (i % 4) * 1.4f - 2.1f;
-            float y = (i / 4) * 1.4f - 2.3f;
+            float y = (i / 4) * 1.4f - 2.3f + positionOffset;
             newCard.transform.position = new Vector3(x, y, 0);
 
             string memberName = "Image" + members[i].ToString();
@@ -116,6 +127,14 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 1.0f;
         trytime = 0;
         trytimeTxt.text = trytime.ToString("N0");
+    }
+
+    void initUI()
+    {
+        if (PlayerPrefs.GetInt("difficulty") == 1)
+        {
+            gameInfoPanel.GetComponent<RectTransform>().anchoredPosition = new Vector3(0f, -565f, 0f);
+        }
     }
 
     public void isMatched()
@@ -226,5 +245,20 @@ public class gameManager : MonoBehaviour
         time = 60f;
         AudioManager.instance.resetAudio();
         SceneManager.LoadScene("StartScene");
+    }
+
+    public static T[] ShuffleArray<T>(T[] array, int length)
+    {
+        System.Random prng = new System.Random();
+
+        for (int i = 0; i < length - 1; i++)
+        {
+            int randomIndex = prng.Next(i, length);
+            T tempItem = array[randomIndex];
+            array[randomIndex] = array[i];
+            array[i] = tempItem;
+        }
+
+        return array;
     }
 }

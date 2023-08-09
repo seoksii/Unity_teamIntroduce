@@ -22,6 +22,7 @@ public class startManager : MonoBehaviour
 
     public void startGame()
     {
+        PlayerPrefs.SetInt("difficulty", 0);
         SceneManager.LoadScene("MainScene");
     }
 
@@ -29,7 +30,8 @@ public class startManager : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("isNormalClear") == 1)
         {
-            SceneManager.LoadScene("HardScene");
+            PlayerPrefs.SetInt("difficulty", 1);
+            SceneManager.LoadScene("MainScene");
         }
         else
         {
