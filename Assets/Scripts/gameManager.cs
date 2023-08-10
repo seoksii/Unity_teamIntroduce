@@ -214,7 +214,6 @@ public class gameManager : MonoBehaviour
     public void resumeGame()
     {
         isPaused = false;
-        isClickable = true;
     }
 
     public void successGame()
