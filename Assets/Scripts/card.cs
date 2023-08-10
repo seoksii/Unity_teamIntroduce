@@ -92,13 +92,13 @@ public class card : MonoBehaviour
 
     public void destroyCard()
     {
-        Invoke("destroyCardInvoke", 1.0f);
+        Invoke("destroyCardInvoke", 6.0f);
     }
 
     void destroyCardInvoke()
     {
-        Destroy(gameObject);
         enableClick();
+        Destroy(gameObject);
     }
 
     public void closeCard()
