@@ -87,7 +87,16 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isPaused == false) time -= Time.deltaTime;
+        if (isPaused == false)
+        {
+            time -= Time.deltaTime;
+            if (time < 0)
+            {
+                isPaused = true;
+                time = 0f;
+            }
+        }
+        
         timeTxt.text = time.ToString("N2");
 
         if (time < 20.0f)
@@ -96,7 +105,7 @@ public class gameManager : MonoBehaviour
             GameObject.Find("Main Camera").GetComponent<Camera>().backgroundColor = Color.yellow;
         }
 
-        if (time < 0.0f)
+        if (time <= 0.0f)
         {
             totalScore = 200 + score + time - trytime;
 
@@ -151,12 +160,6 @@ public class gameManager : MonoBehaviour
             firstCard.GetComponent<card>().destroyCard();
             secondCard.GetComponent<card>().destroyCard();
 
-            int cardsLeft = GameObject.Find("Cards").transform.childCount;
-            if (cardsLeft == 2)
-            {
-                PlayerPrefs.SetInt("isNormalClear", 1);
-                Invoke("successGame", 7.0f);
-            }
         }
         else
         {
@@ -185,8 +188,17 @@ public class gameManager : MonoBehaviour
         panelExplanation.text = firstCard.GetComponent<card>().cardExplanation[cardNum];
 
         panelAnimator.SetBool("isSuccess", true);
-        Invoke("disablePanel", 5.0f);
-        Invoke("resumeGame", 6.5f);
+        int cardsLeft = GameObject.Find("Cards").transform.childCount;
+        if (cardsLeft == 2)
+        {
+            PlayerPrefs.SetInt("isNormalClear", 1);
+            Invoke("successGame", 6.0f);
+        }
+        else
+        {
+            Invoke("disablePanel", 5.0f);
+            Invoke("resumeGame", 6.5f);
+        }
     }
 
     public void disablePanel()
@@ -202,6 +214,7 @@ public class gameManager : MonoBehaviour
     public void resumeGame()
     {
         isPaused = false;
+        isClickable = true;
     }
 
     public void successGame()
